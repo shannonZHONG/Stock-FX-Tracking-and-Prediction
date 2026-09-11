@@ -46,8 +46,10 @@ The models use historical prices and derived features to forecast future values.
 
 ## Coding  
 ```
-# 1. Reshape for LSTM: (samples, time_steps, features)
-x = x.reshape((x.shape[0], x.shape[1], 1))
+# 1. Reshape data for RNN:
+reshaped_data = np.array(data).astype('float64')
+x= reshaped_data[:,:-1]
+y = reshaped_data[:,-1]
 
 # 2. Split into train and test set attention : use chronological split to prevent data leakage form  future to past 
 split = int(len(x) * 0.8)
