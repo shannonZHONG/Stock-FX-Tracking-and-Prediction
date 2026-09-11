@@ -19,6 +19,8 @@ Part of implementation details and code are publicly shared; this site presents 
 The models use historical prices and derived features to forecast future values. The evaluation emphasizes:
 
 - Ability to track major up/down moves in historical data
+- Ability to data preprocessing, build a recurrent neural network (RNN), Train the model, exchange rate/stock forecasting, Plot charts
+
 
 ## Results: Tracking
 
@@ -40,15 +42,46 @@ The models use historical prices and derived features to forecast future values.
 
 **FX prediction vs. actual (test set).** The model achieves reasonable alignment with actual exchange rates, with some under/over-prediction at extremes.
 
-## Key Findings
 
--
-- 
-- 
 
 ## Coding  
 ```
-print("Hello world")
+# 1. Reshape for LSTM: (samples, time_steps, features)
+x = x.reshape((x.shape[0], x.shape[1], 1))
+
+# 2. Split into train and test set attention : use chronological split to prevent data leakage form  future to past 
+split = int(len(x) * 0.8)
+x_train, x_test = x[:split], x[split:]
+y_train, y_test = y[:split], y[split:]
+
+# 3. Build LSTM model and compile with XXXXX optimizer  and XXXX MSE lose 
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM, Dense
+
+model = Sequential([
+    LSTM(256, input_shape=(TIME_STEPS, 1)),
+    Dense(1)
+])
+
+model.compile(optimizer='adam', loss='mse')
+
+# 4. Train the model
+fit on training data with test set used for validation monitoring
+model.fit(x_train, y_train, epochs=50, batch_size=32, 
+          validation_data=(x_test, y_test), verbose=1)
+
+# 5. Predict and inverse-transform to original scale 
+pred_scaled = model.predict(x_test)
+pred = scaler.inverse_transform(pred_scaled)     
+actual = scaler.inverse_transform(y_test.reshape(-1,1))
+
+# 6. Visualize actual vs predicted exchange rates 
+plt.figure(figsize=(12,5))
+plt.plot(actual, label='實際匯率')
+plt.plot(pred, label='預測匯率')
+plt.legend()
+plt.title('USD/TWD 匯率預測 (LSTM)')
+plt.show()
 ```
 
 This is a demonstration site for a portfolio project.
