@@ -1,5 +1,5 @@
 # Stock-FX-Tracking-and-Prediction
-This repository presents the methodology and results of a stock and FX prediction project.
+This repository presents the methodology and results of a stock and FX prediction project.<br>
 *A case study in time-series modeling for financial markets*
 
 ## Overview
