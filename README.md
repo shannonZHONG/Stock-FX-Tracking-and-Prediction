@@ -9,7 +9,7 @@ This repository presents the methodology and results of a stock and FX predictio
 
 This project builds models to track and predict stock prices and exchange rates. The focus is on capturing trends and evaluating prediction accuracy on unseen data.
 
-Implementation details and code are not publicly shared; this site presents the methodology, results, and key figures.
+Part of implementation details and code are publicly shared; this site presents the methodology, results, key figures, and code .
 
 ## Data & Setup
 
