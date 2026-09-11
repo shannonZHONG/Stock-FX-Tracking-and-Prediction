@@ -54,15 +54,14 @@ split = int(len(x) * 0.8)
 x_train, x_test = x[:split], x[split:]
 y_train, y_test = y[:split], y[split:]
 
-# 3. Build LSTM model and compile with XXXXX optimizer  and XXXX MSE lose 
+# 3. Build RNN model and compile with Adam optimizer and MSE lose for regression task  
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import LSTM, Dense
+from tensorflow.keras.layers import,SimpleRNN, Dropout,Dense
 
-model = Sequential([
-    LSTM(256, input_shape=(TIME_STEPS, 1)),
-    Dense(1)
-])
-
+model = Sequential()
+model.add(SimpleRNN(input_shape=(),units=256, unroll=False))
+model.add(Dropout(0.2))
+model.add(Dense(units=1))
 model.compile(optimizer='adam', loss='mse')
 
 # 4. Train the model
@@ -77,10 +76,10 @@ actual = scaler.inverse_transform(y_test.reshape(-1,1))
 
 # 6. Visualize actual vs predicted exchange rates 
 plt.figure(figsize=(12,5))
-plt.plot(actual, label='實際匯率')
-plt.plot(pred, label='預測匯率')
+plt.plot(actual, label='actual exchange rate')
+plt.plot(pred,label='prediction exchange rate')
 plt.legend()
-plt.title('USD/TWD 匯率預測 (LSTM)')
+plt.title('USD/TWD')
 plt.show()
 ```
 
