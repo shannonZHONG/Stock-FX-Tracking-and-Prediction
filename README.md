@@ -39,7 +39,7 @@ The models use historical prices and derived features to forecast future values.
 
 **Stock prediction vs. actual (test set).** The scatter shows how closely predicted prices align with realized prices on unseen data.
 
-*Image not available: fx_prediction_vs_actual.png*
+![fx prediction vs actual on test set](fx_prediction_vs_actual.png)
 
 **FX prediction vs. actual (test set).** The model achieves reasonable alignment with actual exchange rates, with some under/over-prediction at extremes.
 
