@@ -45,10 +45,10 @@ The models use historical prices and derived features to forecast future values.
 
 ## Key Findings
 
-- The models capture major trends in both stock and FX series.
-- Prediction errors increase during high-volatility regimes and market shocks.
-- Directional accuracy is [X]% for stocks and [Y]% for FX on the test period.
+-
+- 
+- 
 
----
+## 
 
-This is a demonstration site for a portfolio project. For questions or collaboration, contact: [your.email@example.com](mailto:your.email@example.com).
+This is a demonstration site for a portfolio project.
